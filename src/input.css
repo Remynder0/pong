@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+
+/* Défaut (light) */
+:root {
+--bg: #f3f4f6; /* gray-100 */
+--card: #ffffff; /* white */
+--accent: #2563eb; /* blue-600 */
+--accent-600: #1d4ed8;
+--muted: #6b7280; /* gray-500 */
+--border: #374151; /* gray-700 */
+--score-bg: rgba(37,99,235,0.08);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+--bg: #0b1220; /* very dark */
+--card: #0f1724;
+--accent: #60a5fa; /* sky-400 */
+--accent-600: #3b82f6;
+--muted: #94a3b8;
+--border: #9ca3af;
+--score-bg: rgba(96,165,250,0.08);
+}
+
+/* Neon theme */
+[data-theme="neon"] {
+--bg: #050814; /* deep dark */
+--card: #071028;
+--accent: #00ffd5; /* neon cyanish */
+--accent-600: #00e6c1;
+--muted: #8ed1c7;
+--border: #08f7a0;
+--score-bg: rgba(0,255,213,0.08);
+}
+
+/* Ocean theme */
+[data-theme="ocean"] {
+--bg: #ecfeff; /* very light cyan */
+--card: #ffffff;
+--accent: #0369a1; /* sky-ish */
+--accent-600: #075985;
+--muted: #0f172a;
+--border: #0b5f8a;
+--score-bg: rgba(3,105,161,0.06);
+}
+
+
+/* Sunset theme */
+[data-theme="sunset"] {
+--bg: #fff7ed; /* warm */
+--card: #ffffff;
+--accent: #fb7185; /* rose */
+--accent-600: #f43f5e;
+--muted: #7c2d12;
+--border: #b45309;
+--score-bg: rgba(251,113,133,0.06);
+}
+
+
+/* Vignettes de thème */
+.bg-var { background-color: var(--bg); }
+.card-var { background-color: var(--card); }
+.text-var { color: var(--text); }
+
+.swatch { width: 36px; height: 24px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }

@@ -7,13 +7,50 @@
   <script defer src="./scripts/script.js"></script>
   <script defer src="./scripts/themeScript.js"></script>
 </head>
-<body class="min-h-screen bg-[color:var(--bg)] flex flex-col items-center p-4 transition-colors duration-300">
+<body data-theme="light" class="min-h-screen bg-[color:var(--bg)] flex flex-col items-center p-4 transition-colors duration-300">
 
 
 <header class="w-full max-w-4xl">
+<div class="flex items-center justify-between">
 <div>
-<h1 class="text-3xl font-bold text-center">Pong Game</h1>
-<p class="text-sm text-center">Joue le plus longtemps possible !!!</p>
+<h1 class="text-3xl font-bold text-[color:var(--muted)]">Pong Game</h1>
+<p class="text-sm text-[color:var(--muted)]">Joue le plus longtemps possible !!!</p>
+</div>
+
+
+<div class="flex items-center space-x-3">
+<!-- Sélecteur de thème -->
+<div class="flex items-center space-x-2 bg-[color:var(--card)] p-2 rounded-lg shadow-md border" style="border-color:var(--border)">
+<label for="themeSelect" class="text-sm text-[color:var(--muted)]">Thème</label>
+<select id="themeSelect" class="ml-2 px-2 py-1 rounded-md bg-transparent text-[color:var(--muted)] outline-none">
+<option value="light">Light</option>
+<option value="dark">Dark</option>
+<option value="neon">Neon</option>
+<option value="ocean">Ocean</option>
+<option value="sunset">Sunset</option>
+</select>
+</div>
+
+
+<!-- Vignettes rapides -->
+<div class="flex items-center space-x-2">
+<button class="p-2 rounded-md card-var shadow-sm" data-theme-btn="light" title="Light" style="border:1px solid transparent;">
+<div class="swatch" style="background:linear-gradient(90deg,#ffffff,#f3f4f6)"></div>
+</button>
+<button class="p-2 rounded-md" data-theme-btn="dark" title="Dark">
+<div class="swatch" style="background:linear-gradient(90deg,#0f1724,#0b1220)"></div>
+</button>
+<button class="p-2 rounded-md" data-theme-btn="neon" title="Neon">
+<div class="swatch" style="background:linear-gradient(90deg,#00ffd5,#08f7a0)"></div>
+</button>
+<button class="p-2 rounded-md" data-theme-btn="ocean" title="Ocean">
+<div class="swatch" style="background:linear-gradient(90deg,#ecfeff,#0369a1)"></div>
+</button>
+<button class="p-2 rounded-md" data-theme-btn="sunset" title="Sunset">
+<div class="swatch" style="background:linear-gradient(90deg,#fff7ed,#fb7185)"></div>
+</button>
+</div>
+</div>
 </div>
 </header>
 
