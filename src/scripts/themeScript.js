@@ -1,4 +1,3 @@
-// === Theme switching + persistence ===
 const body = document.body;
 const select = document.getElementById('themeSelect');
 const themeButtons = document.querySelectorAll('[data-theme-btn]');
@@ -15,7 +14,6 @@ body.setAttribute('data-theme', name);
 localStorage.setItem('pong-theme', name);
 
 
-// animer bref changement d'accent sur le bouton start
 const start = document.getElementById('startButton');
 start.animate([
 { transform: 'scale(1)' },
@@ -24,15 +22,12 @@ start.animate([
 ], { duration: 260 });
 
 
-// Mettre à jour les styles inline dépendants (ex: startButton background)
 start.style.background = getComputedStyle(document.documentElement).getPropertyValue('--accent') || getComputedStyle(body).getPropertyValue('--accent');
 start.style.color = '#fff';
-// Mettre à jour la bordure du canvas
 const canvas = document.getElementById('gameCanvas');
 canvas.style.borderColor = getComputedStyle(body).getPropertyValue('--border');
 
 
-// Score color/bg
 const score = document.getElementById('score');
 score.style.background = getComputedStyle(body).getPropertyValue('--score-bg');
 score.style.color = getComputedStyle(body).getPropertyValue('--muted');
@@ -47,5 +42,4 @@ select.value = t;
 }));
 
 
-// Initial call to apply saved theme styles
 setTheme(saved);

@@ -3,6 +3,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const start = document.getElementById("startButton");
 const score = document.getElementById("score");
+const highscore = document.getElementById("highscore");
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
 
@@ -11,7 +12,7 @@ const rightButton = document.getElementById("rightButton");
 const width = window.innerWidth;
 const height = window.innerHeight;
 //canvas.width = width * 0.5;
-canvas.height = height * 0.75;
+canvas.height = height * 0.62;
 console.log(width, height);
 
 // Création des objets
@@ -40,7 +41,6 @@ class Platform {
           this.moveLeft = function (speed = 6) {
             if (this.x > 0) this.x -= speed;
 
-            // Effet appui bouton tactile gauche
             if (leftPressed && leftButton) {
                 leftButton.classList.add("translate-y-1", "scale-95", "shadow-inner");
                 setTimeout(() => {
@@ -52,7 +52,6 @@ class Platform {
         this.moveRight = function (speed = 6) {
             if (this.x + this.width < canvas.width) this.x += speed;
 
-            // Effet appui bouton tactile droite
             if (rightPressed && rightButton) {
                 rightButton.classList.add("translate-y-1", "scale-95", "shadow-inner");
                 setTimeout(() => {
@@ -109,10 +108,17 @@ class Ball {
                 this.x < platform.x + platform.width
             ) {
                 this.y = platform.y - this.radius;
-                this.vy = Math.min(-this.vy * bounce,5*speed);
-                console.log(this.vy);
 
+                const relativeIntersectX = (this.x - (platform.x + platform.width / 2)) / (platform.width / 2);
+
+                const maxBounceAngle = (75 * Math.PI) / 180;
+                const bounceAngle = relativeIntersectX * maxBounceAngle;
+
+                const speed = Math.sqrt(this.vx**2 + this.vy**2);
+                this.vx = speed * Math.sin(bounceAngle);
+                this.vy = -speed * Math.cos(bounceAngle);
             }
+
 
             // game over
             if (this.y - this.radius > canvas.height) {
@@ -181,6 +187,8 @@ function startGame() {
     score.textContent = "Score: 0";
     leftButton.style.display = "block";
     rightButton.style.display = "block";
+    highscore.textContent = "Meilleure " + (localStorage.getItem("bestScore") || "0");
+
 
     // Création des objets
     platform = new Platform((canvas.width - 100) / 2, canvas.height - 30, 100, "brown");
@@ -222,7 +230,6 @@ function gameOver() {
 
 
 // listener
-
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 leftButton.addEventListener("mousedown", () => { leftPressed = true; });
