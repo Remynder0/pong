@@ -202,7 +202,14 @@ function gameOver() {
     cancelAnimationFrame(animationId); // stop boucle animation
     clearInterval(scoreInterval); // stop compteur
 
-   
+    // Sauvegarde du score
+    localStorage.setItem("lastScore", score.textContent);
+    let bestScore = localStorage.getItem("bestScore");
+    let currentScore = parseInt(score.textContent.split(" ")[1]);
+
+    if (!bestScore || currentScore > parseInt(bestScore.split(" ")[1])) {
+        localStorage.setItem("bestScore", score.textContent);
+    }
 
     ball = null;
 
